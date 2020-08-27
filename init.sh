@@ -15,9 +15,9 @@ error_exit() {
 }
 
 installed() {
-  tool=$1
+  local tool=$1
   
-  test "command -v $tool &>/dev/null";
+  test "command -v $tool &>/dev/null"
 }
 
 install_fish() {  
@@ -30,4 +30,4 @@ install_fish() {
   fi      
 }
 
-fish()
+install_fish
