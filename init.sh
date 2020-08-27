@@ -27,6 +27,8 @@ install_fish() {
     #curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells:fish:release:3.gpg > /dev/null
     #sudo apt update
     #sudo apt install fish
+  else
+		echo 'Fish already installed' 
   fi      
 }
 
