@@ -10,7 +10,7 @@ error_exit() {
 
 	msg=$1
 
-	echo "error: ${msg}"
+	echo "error: ${msg}"		
 	exit 1
 }
 
