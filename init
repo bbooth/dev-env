@@ -1,0 +1,54 @@
+#!/bin/bash
+
+set -e
+trap 'echo "Error occurred at line ${LINENO}"' ERR
+
+err() { echo $1 1>&2; }
+
+error_exit() {
+    local msg
+    
+    msg=$1
+    
+    echo "error: ${msg}"
+    exit 1
+}
+
+install_fish() {
+    sudo apt install curl gnupg
+    
+    echo 'Installing fish'
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells:fish:release:3.gpg > /dev/null
+    sudo apt update
+    sudo apt install fish
+    
+    echo  "Setting fish as default shell"
+    echo /usr/local/bin/fish | sudo tee -a /etc/shells
+    chsh -s /usr/bin/fish
+    
+    echo 'Installing fisher'
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+    
+    echo "starship init fish | source" | tee -a ~/.config/fish/config.fish
+}
+
+install_starship() {
+    echo 'Installing Starship'
+    curl -fsSL https://starship.rs/install.sh | bash
+}
+
+install_sdkman() {
+    sudo apt install curl unzip zip
+    
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+}
+
+sudo apt install curl gnupg unzip zip
+
+command -v starship >/dev/null || { install_starship; }
+command -v sdk >/dev/null || { install_sdkman; }
+command -v fish >/dev/null || { install_fish; }
+
+./init-fisher-plugins

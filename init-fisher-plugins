@@ -1,0 +1,8 @@
+#!/usr/bin/fish
+
+fisher add \
+    joseluisq/gitnow@2.4.0 \
+    jethrokuan/z \
+    jorgebucaran/nvm.fish \
+    reitzig/sdkman-for-fish@v1.4.0 \
+    franciscolourenco/done
