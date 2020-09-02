@@ -5,4 +5,5 @@ fisher add \
     jethrokuan/z \
     jorgebucaran/nvm.fish \
     reitzig/sdkman-for-fish@v1.4.0 \
-    franciscolourenco/done
+    franciscolourenco/done \
+    danhper/fish-ssh-agent
