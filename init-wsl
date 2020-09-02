@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Setting up Git Credential Manager for Windows"
+git config --global credential.helper "/mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe"

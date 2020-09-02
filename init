@@ -52,3 +52,8 @@ command -v sdk >/dev/null || { install_sdkman; }
 command -v fish >/dev/null || { install_fish; }
 
 ./init-fisher-plugins
+
+uname=$(uname -r)
+if [[ $uname =~ "microsoft" ]]; then
+  ./init-wsl
+fi

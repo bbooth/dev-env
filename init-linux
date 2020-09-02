@@ -1,0 +1,13 @@
+#!/bin/bash
+
+install_git_credential_manager() {
+
+    curl https://github.com/Microsoft/Git-Credential-Manager-for-Mac-and-Linux/blob/master/RPM-GPG-KEY.txt | sudo apt-key add -
+    curl -o /tmp/gcm.rpm 'https://github.com/Microsoft/Git-Credential-Manager-for-Mac-and-Linux/releases/download/git-credential-manager-2.0.4/git-credential-manager-2.0.4-1.noarch.rpm'
+    sudo rpm --import /tmp/gcm-gpg.txt
+    sudo rpm --install gcm.rpm
+    
+    git-credential-manager install
+}
+
+command -v git-credential-manager >/dev/null || { install_git_credential_manager; }
